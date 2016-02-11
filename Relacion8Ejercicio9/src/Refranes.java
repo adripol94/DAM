@@ -1,7 +1,5 @@
-
 public class Refranes {
 	private final int MAXIMO_REFRANES = 3;
-	private final int ASCII = 65;
 	private Refran[] vRefranes;
 	private int i;
 
@@ -14,9 +12,14 @@ public class Refranes {
 	}
 
 	public void addRefran(Refran obj) throws RefranesException {
-		Refran refran;
+		if (i >= vRefranes.length)
+			throw new RefranesException("No se admiten más refranes");
+		
 		if (i > 0) {
+			Refran refran = null;
+			
 			refran = buscarRefran(obj.getRefran());
+
 
 			if (refran != null)
 				throw new RefranesException("Refran repetido");
@@ -40,13 +43,38 @@ public class Refranes {
 			}
 			j++;
 		}
-		if (obj == null)
-			throw new RefranesException("No hay coincidencias");
-		return obj;
+			return obj;
 	}
 
 	public String listarRefranes() {
-		// FIXME No end.
-		return "";
+		char c;
+		int a, j, a2, pos = 0, i;
+		Refran aux;
+		
+		for (i = 0; i < this.i; i++) {
+			c = Character.toUpperCase(vRefranes[i].getRefran().charAt(0));
+			a = c;
+			for (j = i + 1; j < this.i; j++) {
+				c = Character.toUpperCase(vRefranes[j].getRefran().charAt(0));
+				a2 = c;
+				if (a > a2) {
+					pos = j;
+					a = a2;
+				}
+			}
+			aux = vRefranes[i];
+			vRefranes[i] = vRefranes[pos];
+			vRefranes[pos] = aux;
+		}
+		return this.toString();
+	}
+		
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		
+		for (int i = 0; i < this.i; i++) {
+			str.append("Refranes: " + vRefranes[i].getRefran() + "\n");
+		}
+		return str.toString();
 	}
 }

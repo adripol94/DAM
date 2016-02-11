@@ -1,20 +1,20 @@
 import java.util.Scanner;
 
 /**
- * Mostrar un listado con nombre de alumno y su nota ordenado por nota de forma
- * decreciente. Realizar un programa que presente el siguiente menú: 1. Guardar
+ * <p>Mostrar un listado con nombre de alumno y su nota ordenado por nota de forma
+ * decreciente. Realizar un programa que presente el siguiente menú: <br> <li>1. Guardar
  * un refrán: Se solicitará la frase con el refrán se guardará. Si el
- * refrán ya estaba se mostrará un mensaje de error y no se guardará. 2.
+ * refrán ya estaba se mostrará un mensaje de error y no se guardará. <li>2.
  * Buscar un refrán que contenga una palabra: Se solicitará una palabra y se
  * buscará el primer refrán que contenga esa palabra. Si no se encuentra se
- * mostrará el mensaje de error 3. Listado de refranes: Se mostrará por
+ * mostrará el mensaje de error <li>3. Listado de refranes: Se mostrará por
  * pantalla un listado de todos los refranes guardados ordenados
- * alfabéticamente. 4. Salir NOTAS: Se guardarán un máximo de 50 refranes, si
- * se intenta superar este máximo se producirá un error. Debe crearse una
+ * alfabéticamente. <li>4. Salir NOTAS: Se guardarán un máximo de 50 refranes, si
+ * se intenta superar este máximo se producirá un error.</p> <br><p>Debe crearse una
  * clase Refranes y una clase PrincipalRefranes Debe realizarse la clase
  * Refranes para que no tenga entrada/salida por pantalla. Los errores se
  * trasmitirán a través de excepciones. Debe crearse una excepción propia
- * ExcepciónRefranes e implementarse su tratamiento.
+ * ExcepciónRefranes e implementarse su tratamiento.</p>
  * 
  * @author adripol94
  * @version 0.1
@@ -102,10 +102,14 @@ public class Main {
 		case 2:
 			str = pedirString("Introduzca un palabra a buscar por favor");
 			refran = refs.buscarRefran(str);
-			System.out.println(refran);
+			if (refran == null)
+				System.out.println("No se encontro refran");
+			else
+				System.out.println(refran);
 			break;
 		case 3:
-			listarRefranes(refs);
+			str = refs.listarRefranes();
+			System.out.println(str);
 			break;
 		case 4:
 			System.out.println("Saliendo");
@@ -114,10 +118,5 @@ public class Main {
 			System.out.println("Opción desconocida");
 			break;
 		}
-	}
-
-	private static void listarRefranes(Refranes refran) {
-		// FIXME Terminar!.
-
 	}
 }
