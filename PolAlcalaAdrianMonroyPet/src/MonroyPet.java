@@ -1,6 +1,6 @@
 
 public class MonroyPet {
-	private static final int NUMERO_MENSAJES_MAXIMO = 5;
+	private static final int NUMERO_MENSAJES_MAXIMO = 3;
 	private static final int NUMERO_MINUTOS_MAXIMO = 20;
 	private static final int COSTE_COMIDA = 30;
 	private static final int PUNTOS_JUGAR = 3;
