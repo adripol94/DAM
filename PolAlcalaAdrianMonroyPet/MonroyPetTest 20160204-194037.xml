@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MonroyPetTest" project="PolAlcalaAdrianMonroyPet" tests="8" started="8" failures="0" errors="0" ignored="0">
+  <testsuite name="MonroyPetTest" time="4.471">
+    <testcase name="jugarException" classname="MonroyPetTest" time="0.001"/>
+    <testcase name="crearAnimales" classname="MonroyPetTest" time="0.0"/>
+    <testcase name="jugar" classname="MonroyPetTest" time="0.0"/>
+    <testcase name="mensaje" classname="MonroyPetTest" time="4.468"/>
+    <testcase name="comprarComida" classname="MonroyPetTest" time="0.0"/>
+    <testcase name="compraException" classname="MonroyPetTest" time="0.001"/>
+    <testcase name="darComida" classname="MonroyPetTest" time="0.0"/>
+    <testcase name="cambiarNombre" classname="MonroyPetTest" time="0.001"/>
+  </testsuite>
+</testrun>
