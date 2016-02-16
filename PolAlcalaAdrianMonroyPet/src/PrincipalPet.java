@@ -29,7 +29,7 @@ public class PrincipalPet {
 		int mascota, num;
 		String msg;
 
-		switch (opc) {
+		switch (opc) { // FIXME elegirMascota(); en vez de poner if en todos lados. 
 		case 1:
 			mascota = solicitarMascota();
 			if (mascota == 1)

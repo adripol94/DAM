@@ -35,6 +35,9 @@ public class MonroyPet {
 	}
 	
 	public void comprarComida(int cantidad) throws MonroyPetException {
+		if (cantidad < 0)
+			throw new MonroyPetException("Cantidad negativa");
+		
 		if (puntos - (cantidad * COSTE_COMIDA) < 0)
 			throw new MonroyPetException("No tienes suficientes puntos");
 		cantidadComida += cantidad;
@@ -79,7 +82,7 @@ public class MonroyPet {
 		return puntos;
 	}
 
-	public void setPuntos(int puntos) {
+	private void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
 
@@ -94,7 +97,7 @@ public class MonroyPet {
 	public boolean equals(MonroyPet mascota) {
 		boolean igual = false;
 		
-		if (this.nombre == mascota.nombre && this.tipo == mascota.tipo) {
+		if (this.nombre.equals(mascota.nombre) && this.tipo.equals(mascota.tipo)) {
 			igual = true;
 		}
 		return igual;
