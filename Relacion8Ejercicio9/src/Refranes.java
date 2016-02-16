@@ -1,14 +1,15 @@
 public class Refranes {
-	private final int MAXIMO_REFRANES = 3;
 	private Refran[] vRefranes;
-	private int i;
+	private int i; // Total refrains.
+	
+	// NO SE USARÁ GET DEL VECTOR YA QUE SE PASA POR REFERENCIA Y NO COPIA!
 
 	Refranes(int n) throws RefranesException {
 		if (n <= 0)
 			throw new RefranesException("Tamaño en negativo no aceptado");
 
 		i = 0;
-		vRefranes = new Refran[MAXIMO_REFRANES];
+		vRefranes = new Refran[n];
 	}
 
 	public void addRefran(Refran obj) throws RefranesException {
@@ -27,7 +28,7 @@ public class Refranes {
 		vRefranes[i] = obj;
 		i++;
 	}
-
+	
 	public Refran buscarRefran(String str) throws RefranesException {
 		if (i == 0)
 			throw new RefranesException("No se ha introducido ningun refran");
@@ -47,24 +48,24 @@ public class Refranes {
 	}
 
 	public String listarRefranes() {
-		char c;
-		int a, j, a2, pos = 0, i;
+		int i , j;
 		Refran aux;
 		
+		// Metodo Burbuja.
+		// Comparamos las Cadenas con compareTo de tal forma que soltara un menor que 0 en caso de ser mayo.
+		// ANA LOPEZ
+		// ANA ZAPATERO
+		// Z mayor que L devolvera un negativo.
+		
 		for (i = 0; i < this.i; i++) {
-			c = Character.toUpperCase(vRefranes[i].getRefran().charAt(0));
-			a = c;
 			for (j = i + 1; j < this.i; j++) {
-				c = Character.toUpperCase(vRefranes[j].getRefran().charAt(0));
-				a2 = c;
-				if (a > a2) {
-					pos = j;
-					a = a2;
+				if (vRefranes[j - 1].getRefran().compareTo(vRefranes[j].getRefran()) > 0) {
+					aux = vRefranes[j];
+					vRefranes[j] = vRefranes[j - 1];
+					vRefranes[j - 1] = aux;
 				}
 			}
-			aux = vRefranes[i];
-			vRefranes[i] = vRefranes[pos];
-			vRefranes[pos] = aux;
+			
 		}
 		return this.toString();
 	}
