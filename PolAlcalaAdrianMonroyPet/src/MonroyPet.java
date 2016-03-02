@@ -82,10 +82,6 @@ public class MonroyPet {
 		return puntos;
 	}
 
-	private void setPuntos(int puntos) {
-		this.puntos = puntos;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
