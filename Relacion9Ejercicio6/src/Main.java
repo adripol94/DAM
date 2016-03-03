@@ -1,4 +1,3 @@
-import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
 /**
@@ -31,7 +30,7 @@ public class Main {
 				accionMenu(opc);
 			} while (opc != 'e');
 		} catch (MinaException e) {
-			System.out.println(e.getMessage() + "Fin del juego");
+			System.out.println(e.getMessage() + " Fin del juego");
 		}
 	}
 
