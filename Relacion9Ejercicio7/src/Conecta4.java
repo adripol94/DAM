@@ -1,7 +1,6 @@
 public class Conecta4 {
 	private final char ICONO_J1;
 	private final char ICONO_J2;
-	private int contadorFichas4;
 	private int[] posFichas = { 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 };
 	private char[][] tablero = new char[10][10];
 
@@ -12,10 +11,38 @@ public class Conecta4 {
 
 	private void comprobar4(int n) throws Conecta4FinException {
 		char icono = tablero[posFichas[n]][n];
+		int posFila = posFichas[n], posColumna = n, contadorFichas4;
 
-		comprobarVertical(n, icono);
-		comprobarHorizontal(n, icono);
+		contadorFichas4 = comprobarFichas(posFila, posColumna, icono, 1, 0) + 1;
+		fichas4(contadorFichas4);
+		contadorFichas4 = comprobarFichas(posFila, posColumna, icono, 0, -1) 
+				+ comprobarFichas(posFila, posColumna, icono, 0, 1) + 1;
+		fichas4(contadorFichas4);
+		contadorFichas4 = comprobarFichas(posFila, posColumna, icono, -1, -1) 
+				+ comprobarFichas(posFila, posColumna, icono, 1, 1) + 1;
+		fichas4(contadorFichas4);
+		contadorFichas4 = comprobarFichas(posFila, posColumna, icono, -1, 1)
+				+ comprobarFichas(posFila, posColumna, icono, 1, -1) + 1;
+		fichas4(contadorFichas4);
+	}
 
+	private int comprobarFichas(int posFila, int posColumna, char icono, int movimientoI, int movimientoJ)
+			throws Conecta4FinException {
+		char casilla;
+		int fila = posFila, columna = posColumna, contadorFichas4 = -1;
+		boolean sigue = true;
+		
+		while (sigue && (fila >= 0 && fila <= 9) && (columna >= 0 && columna <= 9)) {
+			casilla = tablero[fila][columna];
+			if (casilla != icono)
+				sigue = false;
+			else {
+				fila = fila + movimientoI;
+				columna = columna + movimientoJ;
+				contadorFichas4++;
+			}
+		}
+		return contadorFichas4;
 	}
 
 	/**
@@ -30,19 +57,21 @@ public class Conecta4 {
 	 * @throws Conecta4FinException
 	 *             En caso de 4 rayas de daría esta exception.
 	 */
+	@Deprecated
+	@SuppressWarnings("unused")
 	private void comprobarHorizontal(int n, char icono) throws Conecta4FinException {
 		int posColumna = n;
 		char casilla;
-		contadorFichas4 = 0;
-		
+		int contadorFichas4 = 0;
+
 		casilla = tablero[posFichas[n]][posColumna];
 		while (posColumna > 0 && casilla == icono) {
 			posColumna--;
 			casilla = tablero[posFichas[n]][posColumna];
 			contadorFichas4++;
 		}
-		fichas4();
-		
+		fichas4(contadorFichas4);
+
 		posColumna = n;
 
 		casilla = tablero[posFichas[n]][posColumna];
@@ -52,25 +81,27 @@ public class Conecta4 {
 			contadorFichas4++;
 		}
 
-		fichas4();
+		fichas4(contadorFichas4);
 
 	}
 
+	@Deprecated
+	@SuppressWarnings("unused")
 	private void comprobarVertical(int n, char icono) throws Conecta4FinException {
 		char casilla;
 		int posFila = posFichas[n];
-		contadorFichas4 = 1;
+		int contadorFichas4 = 1;
 
+		casilla = tablero[posFila][n];
+		while (posFila < 9 && casilla == icono) {
+			posFila++;
 			casilla = tablero[posFila][n];
-			while (posFila < 9 && casilla == icono) {
-				posFila++;
-				casilla = tablero[posFila][n];
-				contadorFichas4++;
-			}
-			fichas4();
+			contadorFichas4++;
+		}
+		fichas4(contadorFichas4);
 	}
 
-	private void fichas4() throws Conecta4FinException {
+	private void fichas4(int contadorFichas4) throws Conecta4FinException {
 		if (contadorFichas4 == 4)
 			throw new Conecta4FinException("Conecta 4: Enhorabuena a ganado el ");
 	}
