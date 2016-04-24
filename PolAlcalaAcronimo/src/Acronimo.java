@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Acronimo {
 	private String palabra;
@@ -32,4 +35,21 @@ public class Acronimo {
 		}
 		return siglas.toString();
 	}
+	
+	public String siglasExtendido(){
+		String res = "";
+		for(char c: palabra.toCharArray()){
+			res = Character.isUpperCase(c)? res += c:res;
+		}
+		return res;
+	}
+	
+	public String siglasJava8(){
+		List<Character> res = new ArrayList<Character>();
+		for(char c: palabra.toCharArray()){
+			res.add(c);
+		}
+		return res.stream().filter(x-> Character.isUpperCase(x)).collect(Collectors.toList()).toString();
+	}
+	
 }
